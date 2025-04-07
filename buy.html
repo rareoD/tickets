@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Buy Ticket</title>
+  <style>
+    body {
+      background-color: #1f1b24;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+
+    form {
+      background-color: #2d1e2f;
+      display: inline-block;
+      padding: 30px;
+      border-radius: 10px;
+    }
+
+    input, select {
+      display: block;
+      margin: 15px auto;
+      padding: 10px;
+      width: 250px;
+      border-radius: 5px;
+      border: none;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #ff66a3;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    a {
+      color: #ff66a3;
+      display: block;
+      margin-top: 20px;
+      text-decoration: none;
+    }
+
+    /* Light Theme */
+    body.light {
+      background-color: #f5f5f5;
+      color: #1f1b24;
+    }
+
+    body.light form {
+      background-color: #ffe6f0;
+    }
+
+    body.light input, 
+    body.light select {
+      background-color: #fff;
+      color: #1f1b24;
+    }
+
+    body.light a {
+      color: #b30059;
+    }
+
+    /* Theme toggle button */
+    #theme-toggle {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 10;
+    }
+
+    #theme-toggle img {
+      width: 28px;
+      height: 28px;
+    }
+  </style>
+</head>
+<body>
+
+  <button id="theme-toggle" aria-label="Toggle theme">
+    <img id="theme-icon" src="images/moon.png" alt="Toggle Theme">
+  </button>
+
+  <h1>Ticket Order</h1>
+
+  <form>
+    <label>Artist</label>
+    <select>
+      <option>MACAN</option>
+      <option>PHARAOH</option>
+      <option>OG BUDA</option>
+      <option>OBLADAET</option>
+    </select>
+
+    <label>Ticket Type</label>
+    <select>
+      <option>Dance Floor — 2200₽</option>
+      <option>Fan Zone — 3500₽</option>
+      <option>VIP — 4800₽</option>
+    </select>
+
+    <label>Your Name</label>
+    <input type="text" placeholder="John Doe" required>
+
+    <label>Email</label>
+    <input type="email" placeholder="example@mail.com" required>
+
+    <label>Phone</label>
+    <input type="tel" placeholder="+7 999 999-99-99" required>
+
+    <button type="submit" onclick="alert('Ticket successfully booked!')">Submit</button>
+  </form>
+
+  <a href="index.html">⬅ Back to the Main Page</a>
+
+  <script>
+    const toggleBtn = document.getElementById("theme-toggle");
+    const icon = document.getElementById("theme-icon");
+
+    toggleBtn.addEventListener("click", () => {
+      document.body.classList.toggle("light");
+
+      if (document.body.classList.contains("light")) {
+        icon.src = "images/sun.png";
+        icon.alt = "Switch to dark mode";
+        localStorage.setItem("theme", "light");
+      } else {
+        icon.src = "images/moon.png";
+        icon.alt = "Switch to light mode";
+        localStorage.setItem("theme", "dark");
+      }
+    });
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "light") {
+        document.body.classList.add("light");
+        icon.src = "images/sun.png";
+        icon.alt = "Switch to dark mode";
+      } else {
+        icon.src = "images/moon.png";
+        icon.alt = "Switch to light mode";
+      }
+    });
+  </script>
+
+</body>
+</html>

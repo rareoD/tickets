@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Times New Roman', cursive;
+    background: #fffbea;
+    color: #433;
+}
+
+header {
+    background: #f19cbb;
+    color: #fff;
+    padding: 1.5em;
+    text-align: center;
+    font-size: 1.8em;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+nav a {
+    margin: 0 1em;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #ffe600;
+}
+
+.event-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2em;
+    padding: 2em;
+}
+
+.event-card {
+    border: 3px dashed #ff6f61;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    background: #fff0f5;
+    padding: 1em;
+    border-radius: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.event-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(255, 111, 97, 0.5);
+}
+
+.event-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.event-card h2 {
+    font-size: 1.4em;
+    margin-top: 0.5em;
+}
+
+.event-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em;
+}
+
+.event-detail img {
+    max-width: 600px;
+    width: 100%;
+    margin-bottom: 1em;
+    border-radius: 20px;
+    border: 4px dotted #ff4081;
+}
+
+.event-detail h2 {
+    font-size: 2em;
+    margin-bottom: 0.5em;
+}
+
+button {
+    background: #4caf50;
+    color: white;
+    border: none;
+    padding: 1em 2em;
+    font-size: 1em;
+    margin-top: 1em;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #45a049;
+}
+
+footer {
+    background: #fcdfff;
+    text-align: center;
+    padding: 1em;
+    margin-top: 3em;
+    font-size: 1.2em;
+}

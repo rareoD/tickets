@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>OBLADAET - Buy a ticket</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background-color: #1f1b24;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      color: #fff;
+      font-size: 18px;
+    }
+
+    body.light {
+      background-color: #f5f5f5;
+      color: #1f1b24;
+    }
+
+    header {
+      position: relative;
+      height: 200px;
+      overflow: hidden;
+    }
+
+    header video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.5;
+      z-index: 0;
+    }
+
+    .header-text {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding-top: 100px;
+      font-size: 36px;
+      font-weight: bold;
+    }
+
+    .content {
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 80px;
+      flex-wrap: wrap;
+    }
+
+    .left-column, .right-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .left-column img, .right-column img {
+      width: 400px;
+      border-radius: 10px;
+      border: 2px solid #fff;
+    }
+
+    body.light .left-column img,
+    body.light .right-column img {
+      border-color: #1f1b24;
+    }
+
+    .description {
+      max-width: 400px;
+      font-size: 20px;
+      margin-top: 15px;
+      text-align: center;
+    }
+
+    .ticket-form {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .ticket-form select,
+    .ticket-form input {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: none;
+      margin: 5px;
+    }
+
+    .ticket-form button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      background-color: #ff66a3;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    body.light .ticket-form button {
+      background-color: #b30059;
+      color: white;
+    }
+
+    .back-button {
+      display: block;
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .back-button a {
+      background-color: #ff66a3;
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    body.light .back-button a {
+      background-color: #b30059;
+    }
+
+    footer {
+      background-color: #b30059;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 50px;
+    }
+
+    /* Theme toggle button */
+    #theme-toggle {
+      position: fixed;
+      top: 15px;
+      right: 20px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 100;
+    }
+
+    #theme-toggle img {
+      width: 28px;
+      height: 28px;
+    }
+  </style>
+</head>
+<body>
+
+  <button id="theme-toggle" aria-label="Сменить тему">
+    <img id="theme-icon" src="./images/moon.png" alt="Toggle Theme">
+  </button>
+
+  <header>
+    <video autoplay loop muted>
+      <source src="video/obla-header.mp4" type="video/mp4">
+      Ваш браузер не поддерживает видео.
+    </video>
+    <div class="header-text">OBLADAET — Live Tour</div>
+  </header>
+
+  <main class="content">
+    <div class="left-column">
+      <img src="./images/obladaet.jpg" alt="OBLADAET">
+      <div class="description">
+        <p><strong>OBLADAET</strong><br>
+          OBLADAET is not a verb in the present tense, but the pseudonym of Russian rap artist Nazar Votyakov.</p>
+      </div>
+    </div>
+
+    <div class="right-column">
+      <img src="./images/image (6).png" alt="Obladaet the layout of the hall">
+      <div class="ticket-form">
+        <button onclick="window.location.href='buy.html'">Buy a ticket</button>
+      </div>
+    </div>
+  </main>
+
+  <div class="back-button">
+    <a href="index.html">⬅ Back to main</a>
+  </div>
+
+  <script>
+    const toggleBtn = document.getElementById("theme-toggle");
+    const icon = document.getElementById("theme-icon");
+
+    toggleBtn.addEventListener("click", () => {
+      document.body.classList.toggle("light");
+
+      if (document.body.classList.contains("light")) {
+        icon.src = "./images/sun.png";
+        icon.alt = "Сменить на тёмную тему";
+        localStorage.setItem("theme", "light");
+      } else {
+        icon.src = "./images/moon.png";
+        icon.alt = "Сменить на светлую тему";
+        localStorage.setItem("theme", "dark");
+      }
+    });
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "light") {
+        document.body.classList.add("light");
+        icon.src = "./images/sun.png";
+        icon.alt = "Сменить на тёмную тему";
+      } else {
+        icon.src = "./images/moon.png";
+        icon.alt = "Сменить на светлую тему";
+      }
+    });
+  </script>
+
+</body>
+</html>
