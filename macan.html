@@ -2,15 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>MACAN - Buy Ticket</title>
-  <link rel="stylesheet" href="style.css">
+  <title>MACAN — I Am Tour</title>
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
   <style>
     body {
       background-color: #1f1b24;
       font-family: Arial, sans-serif;
       margin: 0;
       color: #fff;
-      font-size: 18px;
+    }
+
+    body.light {
+      background-color: #f5f5f5;
+      color: #1f1b24;
     }
 
     header {
@@ -39,89 +43,6 @@
       font-weight: bold;
     }
 
-    .content {
-      padding: 20px;
-      display: flex;
-      justify-content: center;
-      gap: 80px;
-      flex-wrap: wrap;
-    }
-
-    .left-column, .right-column {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .left-column img, .right-column img {
-      width: 400px;
-      border-radius: 10px;
-      border: 2px solid #fff;
-    }
-
-    .description {
-      max-width: 400px;
-      font-size: 20px;
-      margin-top: 15px;
-      text-align: center;
-    }
-
-    .ticket-form {
-      margin-top: 20px;
-      text-align: center;
-    }
-
-    .ticket-form a {
-      display: inline-block;
-      padding: 10px 20px;
-      font-size: 16px;
-      background-color: #ff66a3;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      margin-top: 10px;
-    }
-
-    .back-button {
-      display: block;
-      text-align: center;
-      margin-top: 30px;
-    }
-
-    .back-button a {
-      background-color: #ff66a3;
-      color: white;
-      text-decoration: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      font-size: 16px;
-    }
-
-    footer {
-      background-color: #b30059;
-      color: white;
-      text-align: center;
-      padding: 15px;
-      margin-top: 50px;
-    }
-
-    /* Light theme */
-    body.light {
-      background-color: #f5f5f5;
-      color: #1f1b24;
-    }
-
-    body.light .left-column img,
-    body.light .right-column img {
-      border: 2px solid #ff66a3;
-    }
-
-    body.light .ticket-form a,
-    body.light .back-button a {
-      background-color: #ff66a3;
-    }
-
-    /* Theme toggle button */
     #theme-toggle {
       position: absolute;
       top: 10px;
@@ -129,7 +50,6 @@
       background: none;
       border: none;
       cursor: pointer;
-      padding: 0;
       z-index: 2;
     }
 
@@ -137,49 +57,134 @@
       width: 28px;
       height: 28px;
     }
+
+    .section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      padding: 40px 20px;
+      align-items: flex-start;
+    }
+
+    .section img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 10px;
+      border: 2px solid #fff;
+    }
+
+    body.light .section img {
+      border-color: #ff66a3;
+    }
+
+    .description {
+      max-width: 400px;
+      font-size: 18px;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .map-section {
+      display: flex;
+      justify-content: center;
+      padding: 30px 20px;
+    }
+
+    iframe {
+      width: 100%;
+      max-width: 800px;
+      height: 400px;
+      border: none;
+      border-radius: 10px;
+    }
+
+    .buy-button {
+      text-align: center;
+      margin: 40px 0;
+    }
+
+    .buy-button a {
+      background-color: #ff66a3;
+      color: white;
+      padding: 12px 24px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 18px;
+      transition: background-color 0.3s;
+    }
+
+    .back-button a {
+      background-color: #ff66a3;
+      color: white;
+      padding: 12px 24px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 18px;
+      transition: background-color 0.3s;
+    }
+
+    .buy-button a:hover {
+      background-color: #e05591;
+    }
+
+    body.light .buy-button a {
+      background-color: #ff66a3;
+      color: white;
+    }
   </style>
 </head>
 <body>
-
   <header>
     <button id="theme-toggle" aria-label="Toggle theme">
       <img id="theme-icon" src="./images/moon.png" alt="Toggle Theme">
     </button>
     <video autoplay loop muted>
       <source src="./video/macan-header.mp4" type="video/mp4">
-      Your browser does not support video.
     </video>
     <div class="header-text">MACAN — I Am Tour</div>
   </header>
 
-  <main class="content">
-    <div class="left-column">
+  <!-- Артист справа, схема слева -->
+  <section class="section">
+    <div data-aos="fade-left">
+      <img src="./images/image (6).png" alt="Hall layout">
+    </div>
+    <div data-aos="fade-right">
       <img src="./images/macan.jpg" alt="MACAN">
       <div class="description">
         <p><strong>MACAN</strong><br>
         Andrey Kosolapov, better known as MACAN, was born in Moscow. He has been passionate about rap since childhood and dreamed of becoming a popular artist.</p>
       </div>
     </div>
+  </section>
 
-    <div class="right-column">
-      <img src="./images/image (6).png" alt="MACAN hall layout">
-      <div class="ticket-form">
-        <a href="buy.html">Buy Ticket</a>
-      </div>
-    </div>
-  </main>
-
-  <div class="back-button">
-    <a href="index.html">⬅ Back to Main Page</a>
+  <!-- Яндекс.Карта -->
+  <div class="map-section" data-aos="fade-up">
+    <iframe src="https://yandex.ru/map-widget/v1/?from=tabbar&ll=37.622505%2C55.755826&mode=search&oid=153561895862&ol=biz&z=16" allowfullscreen></iframe>
   </div>
 
+  <!-- Кнопка -->
+  <div class="buy-button">
+    <a href="buy.html">Buy Ticket</a>
+  </div>
+
+  <div class="back-button">
+  <a href="index.html">
+    <img src="./images/str.png" alt="Back to main page" style="width: 20px; height: auto;">
+  </a>
+  </div>
+
+  <!-- Скрипты -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
+    AOS.init();
+
     const toggleBtn = document.getElementById("theme-toggle");
     const icon = document.getElementById("theme-icon");
 
     toggleBtn.addEventListener("click", () => {
       document.body.classList.toggle("light");
-
       if (document.body.classList.contains("light")) {
         icon.src = "./images/sun.png";
         icon.alt = "Switch to dark mode";
@@ -203,6 +208,5 @@
       }
     });
   </script>
-
 </body>
 </html>
