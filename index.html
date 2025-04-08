@@ -1,173 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Concert Listings</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Concerts</title>
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <style>
     body {
-      background-color: #1f1b24;
-      font-family: Arial, sans-serif;
       margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #1f1b24;
       color: #e0e0e0;
+      transition: background-color 0.3s, color 0.3s;
     }
-    header {
-      background-color: #2d1e2f;
-      padding: 20px;
-      text-align: center;
-      position: relative;
-    }
-    nav a {
-      margin: 0 10px;
-      color: #ff99cc;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .event-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 20px;
-    }
-    .event-card {
-      background-color: #2b1a2e;
-      padding: 15px;
-      border-radius: 10px;
-      text-align: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-      transition: transform 0.2s;
-      border: 1px solid #ff99cc;
-    }
-    .event-card:hover {
-      transform: scale(1.03);
-    }
-    .event-card img {
-      max-width: 100%;
-      border-radius: 10px;
-      border: 1px solid #ff99cc;
-    }
-    .event-card .details-button {
-      margin-top: 10px;
-      display: inline-block;
-      padding: 8px 12px;
-      background-color: #ff99cc;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      font-weight: bold;
-    }
-
-    /* Light Theme Styles */
     body.light {
       background-color: #f5f5f5;
       color: #1f1b24;
     }
-    body.light header {
-      background-color: #ffe0ef;
-    }
-    body.light .event-card {
-      background-color: #fff;
-      color: #1f1b24;
-      border: 1px solid #ff66a3;
-    }
-    body.light .event-card img {
-      border: 1px solid #ff66a3;
-    }
-    body.light .event-card .details-button {
-      background-color: #ff66a3;
-    }
-    body.light nav a {
-      color: #d63384;
+
+    .hero {
+      position: relative;
+      height: 100vh;
+      background-image: url("./images/hero.jpg"); 
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    /* Theme toggle button (icon) */
-    #theme-toggle {
+    .theme-icon {
       position: absolute;
-      top: 10px;
-      right: 15px;
-      background: none;
-      border: none;
+      top: 20px;
+      right: 20px;
+      width: 32px;
+      height: 32px;
       cursor: pointer;
-      padding: 0;
+      filter: drop-shadow(0 0 4px black);
+      transition: transform 0.3s ease;
     }
 
-    #theme-toggle img {
-      width: 28px;
-      height: 28px;
+    .theme-icon:hover {
+      transform: scale(1.1);
+    }
+
+    body.light .theme-icon {
+      filter: drop-shadow(0 0 4px white);
+    }
+
+    .site-title {
+      font-size: 48px;
+      font-weight: bold;
+      color: white;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+    }
+
+    .artist-section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 20px;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .artist-section.left .artist-image {
+      order: 1;
+    }
+
+    .artist-section.left .artist-info {
+      order: 2;
+      text-align: left;
+    }
+
+    .artist-section.right .artist-image {
+      order: 2;
+    }
+
+    .artist-section.right .artist-info {
+      order: 1;
+      text-align: right;
+    }
+
+    .artist-image img {
+      width: 300px;
+      border-radius: 10px;
+      border: 2px solid #ff99cc;
+    }
+
+    .artist-info {
+      max-width: 400px;
+    }
+
+    .artist-info h2 {
+      margin-top: 0;
+    }
+
+    .buy-button {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #ff99cc;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    body.light .buy-button {
+      background-color: #ff66a3;
     }
   </style>
 </head>
 <body>
-  <header>
-    <button id="theme-toggle" aria-label="Toggle theme">
-      <img id="theme-icon" src="./images/moon.png" alt="Toggle Theme">
-    </button>
-    <h1>Concerts in Moscow</h1>
-    <nav>
-      <a href="index.html">HOME</a>
-      <a href="macan.html">MACAN</a>
-      <a href="pharaoh.html">PHARAOH</a>
-      <a href="obladaet.html">OBLADAET</a>
-      <a href="ogbuda.html">OG BUDA</a>
-    </nav>
-  </header>
 
-  <main class="event-grid">
-    <div class="event-card">
+  <div class="hero">
+    <img id="theme-toggle" src="./images/sun.png" alt="Toggle Theme" class="theme-icon">
+    <div class="site-title">Your Site Title</div>
+  </div>
+
+  <section class="artist-section left" data-aos="fade-right">
+    <div class="artist-image">
       <img src="./images/macan.jpg" alt="MACAN">
+    </div>
+    <div class="artist-info">
       <h2>MACAN</h2>
       <p>Adrenaline Stadium, May 15</p>
-      <a href="macan.html" class="details-button">More Info</a>
+      <p>Short concert info goes here.</p>
+      <a href="macan.html" class="buy-button">Buy Ticket</a>
     </div>
-    <div class="event-card">
+  </section>
+
+  <section class="artist-section right" data-aos="fade-left">
+    <div class="artist-image">
       <img src="./images/pharaoh.jpg" alt="PHARAOH">
+    </div>
+    <div class="artist-info">
       <h2>PHARAOH</h2>
       <p>Megasport, May 20</p>
-      <a href="pharaoh.html" class="details-button">More Info</a>
+       <p>Short concert info goes here.</p>
+      <a href="pharaoh.html" class="buy-button">Buy Ticket</a>
     </div>
-    <div class="event-card">
+  </section>
+
+  <section class="artist-section left" data-aos="fade-right">
+    <div class="artist-image">
       <img src="./images/obladaet.jpg" alt="OBLADAET">
+    </div>
+    <div class="artist-info">
       <h2>OBLADAET</h2>
       <p>Glavclub, May 27</p>
-      <a href="obladaet.html" class="details-button">More Info</a>
+       <p>Short concert info goes here.</p>
+      <a href="obladaet.html" class="buy-button">Buy Ticket</a>
     </div>
-    <div class="event-card">
+  </section>
+
+  <section class="artist-section right" data-aos="fade-left">
+    <div class="artist-image">
       <img src="./images/ogbuda.jpg" alt="OG BUDA">
+    </div>
+    <div class="artist-info">
       <h2>OG BUDA</h2>
       <p>Gazgolder, June 5</p>
-      <a href="./ogbuda.html" class="details-button">More Info</a>
+      <p>Short concert info goes here.</p>
+      <a href="ogbuda.html" class="buy-button">Buy Ticket</a>
     </div>
-  </main>
+  </section>
 
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script>
+    AOS.init();
+
     const toggleBtn = document.getElementById("theme-toggle");
-    const icon = document.getElementById("theme-icon");
+
+    function updateThemeIcon() {
+      const isLight = document.body.classList.contains("light");
+      toggleBtn.src = isLight ? "./images/moon.png" : "./images/sun.png";
+    }
 
     toggleBtn.addEventListener("click", () => {
       document.body.classList.toggle("light");
-
-      if (document.body.classList.contains("light")) {
-        icon.src = "./images/sun.png";
-        icon.alt = "Switch to dark mode";
-        localStorage.setItem("theme", "light");
-      } else {
-        icon.src = "./images/moon.png";
-        icon.alt = "Switch to light mode";
-        localStorage.setItem("theme", "dark");
-      }
+      const theme = document.body.classList.contains("light") ? "light" : "dark";
+      localStorage.setItem("theme", theme);
+      updateThemeIcon();
     });
 
     window.addEventListener("DOMContentLoaded", () => {
       const savedTheme = localStorage.getItem("theme");
       if (savedTheme === "light") {
         document.body.classList.add("light");
-        icon.src = "./images/sun.png";
-        icon.alt = "Switch to dark mode";
-      } else {
-        icon.src = "./images/moon.png";
-        icon.alt = "Switch to light mode";
       }
+      updateThemeIcon();
     });
   </script>
+
 </body>
 </html>
